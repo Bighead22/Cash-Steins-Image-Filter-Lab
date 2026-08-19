@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class ImageFiltered extends Image{
 
     public ImageFiltered(String filename) throws Exception {
@@ -25,6 +27,26 @@ public class ImageFiltered extends Image{
             }
         }
     }
+
+    public void makePython() throws IOException{
+        
+        Pixel[][] tempPixels = getPixels();
+
+        for (int row = 0; row < tempPixels.length; row++) {
+            for (int col = 0; col < tempPixels[0].length; col++) {
+
+                //Circle(row, col, 1, fill=rgb(150, 75, 200))
+
+                FileReader.appendToFile("Circle(" + row*10 + ", " + col*10 + ", 10, fill=rgb(" + tempPixels[row][col].getRed() + ", " + tempPixels[row][col].getGreen() + ", " + tempPixels[row][col].getBlue() + "))", "src/app.py");
+                
+            }
+        }
+
+        FileReader.appendToFile("", "src/app.py");
+        FileReader.appendToFile("cmu_graphics.run()", "src/app.py");
+        
+    }
+
     public void makelow() {
        
        

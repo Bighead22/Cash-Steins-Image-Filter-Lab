@@ -1,12 +1,15 @@
 public class ImageRunner {
     public static void main(String[] args) throws Exception {
-        String originalImage = "images/astronaut.jpg";
+
+        //use a 40 pixle ny 40 pixle image
+
+        String originalImage = "images/BlackHole.png";
 
         Image myImage = new Image(originalImage);
         myImage.display();
 
         ImageFiltered myBlueImage = new ImageFiltered(originalImage);
-        myBlueImage.makelow();
+        myBlueImage.makePython();
         myBlueImage.display();
 
     }
