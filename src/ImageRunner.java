@@ -3,7 +3,7 @@ public class ImageRunner {
 
         //use a 40 pixle ny 40 pixle image
 
-        String originalImage = "images/BlackHole.png";
+        String originalImage = "images/Merck.png";
 
         Image myImage = new Image(originalImage);
         myImage.display();
