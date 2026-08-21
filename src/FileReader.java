@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,6 +19,14 @@ public class FileReader {
         
     }
 
+    // Writes the whole file in one shot. appendToFile reopens and closes the file
+    // for every single line, which is fine for a few hundred shapes but takes
+    // minutes once you are generating tens of thousands of them.
+    public static void writeLines(List<String> lines, String filePath) throws IOException {
+        Files.write(Paths.get(filePath), lines, StandardCharsets.UTF_8);
+        System.out.println("Saved " + lines.size() + " lines to " + filePath);
+    }
+
     public static void keepFirstLines(String filePath, int numLines) throws IOException {
         Path path = Paths.get(filePath);
 
@@ -32,4 +41,3 @@ public class FileReader {
         Files.write(path, remainingLines);
     }
 }
-
