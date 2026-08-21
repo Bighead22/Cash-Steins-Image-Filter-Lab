@@ -49,8 +49,6 @@ public class ImageFiltered extends Image{
         int width = tempPixels[0].length;
 
         double spacing = (double) CANVAS / resolution;
-        double starRadius = spacing;
-        double circleRadius = spacing * 0.7;
 
         int shapeCount = resolution * resolution;
 
@@ -79,15 +77,11 @@ public class ImageFiltered extends Image{
 
                 String fill = "rgb(" + p.getRed() + ", " + p.getGreen() + ", " + p.getBlue() + ")";
 
-                int SC = (int) (Math.random() * 3);
-
-                if (SC == 0) {
-                    out.add("Circle(" + fmt(x) + ", " + fmt(y) + ", " + fmt(circleRadius)
-                        + ", fill=" + fill + ")");
-                } else {
-                    out.add("Star(" + fmt(x) + ", " + fmt(y) + ", " + fmt(starRadius)
-                        + ", 8, fill=" + fill + ", roundness = 88)");
-                }
+                // A square exactly one cell wide tiles the canvas with no gaps and no
+                // overlap, so each cell keeps its own colour instead of being smeared
+                // by its neighbours the way the old oversized stars were.
+                out.add("Rect(" + fmt(x) + ", " + fmt(y) + ", " + fmt(spacing) + ", "
+                    + fmt(spacing) + ", fill=" + fill + ")");
             }
         }
 
@@ -95,7 +89,7 @@ public class ImageFiltered extends Image{
         out.add("cmu_graphics.run()");
 
         FileReader.writeLines(out, "src/App.py");
-        System.out.println("Drew " + shapeCount + " shapes at " + resolution + "x" + resolution
+        System.out.println("Drew " + shapeCount + " rects at " + resolution + "x" + resolution
             + " (spacing " + fmt(spacing) + ")");
     }
 
