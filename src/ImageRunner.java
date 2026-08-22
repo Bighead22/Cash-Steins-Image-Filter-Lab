@@ -17,7 +17,7 @@ public class ImageRunner {
 
     // Use an image at least RESOLUTION x RESOLUTION or the extra shapes are wasted.
     // The 40x40 images (Rad.png, Obama.png, BlackHole.png, ...) top out at RESOLUTION = 40.
-    private static final String IMAGE = "images/astronaut.jpg";
+    private static final String IMAGE = "images/Radv2.jpeg";
 
     public static void main(String[] args) throws Exception {
 
